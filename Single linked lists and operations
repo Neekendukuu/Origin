@@ -1,0 +1,91 @@
+//Singly Linked list
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+struct Node *head = NULL; //starting node
+struct Node *tail = NULL; //ending node
+
+struct Node *CreateANode(int val) {
+    struct Node *newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = val;
+    newNode->next = NULL;
+    return newNode;
+}
+
+void InsertintoLinkedList(int val) {
+    struct Node *newNode = CreateANode(val);
+    if(head == NULL) {
+        head = newNode;
+        tail = newNode;
+    } else {
+
+        tail->next = newNode;
+        tail = newNode;
+     
+    }
+}
+
+void DisplayLinkedList(){
+    struct Node *temp = head;
+    while(temp!=NULL){
+        printf("%d ",temp->data);
+        temp = temp->next;
+    }
+}
+
+void InsertAtFirst(int val) {
+    struct Node *newNode = CreateANode(val);
+
+    if(head == NULL) {
+        head = newNode;
+        tail = newNode;
+    } 
+    else {
+        newNode->next = head;
+        head = newNode;
+    }
+}
+
+void InsertAtLast(int val) {
+    struct Node *newNode = CreateANode(val);
+    if(head == NULL) {
+        head = newNode;
+        tail = newNode;
+    } else {
+        tail->next = newNode;
+        tail = newNode;
+    }
+}
+
+void InsertAtPos(int val, int position) {
+    struct Node *newNode = CreateANode(val);
+    struct Node *temp = head;
+    int count = 0;
+    while(count < position - 1) {
+        count++;
+        temp = temp->next;
+    }
+    struct Node *temp1 = temp->next;
+    temp->next = newNode;
+    newNode->next = temp1;
+    
+}
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    for(int i = 0; i < n; i++) {
+        int val;
+        scanf("%d", &val);
+        InsertintoLinkedList(val);
+    }
+    
+    InsertAtFirst(5);
+    InsertAtLast(60);
+    InsertAtPos(500,3);
+    DisplayLinkedList();
+}
