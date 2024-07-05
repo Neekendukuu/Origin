@@ -1,0 +1,78 @@
+Server program:
+
+#include "arithmetic.h"  
+#include <stdio.h>
+#include <stdlib.h>
+#include <rpc/rpc.h>
+int *add_1_svc(intpair *arg, struct svc_req *rqstp) {
+    static int result;
+    printf("Received ADD request: %d + %d\n", arg->a, arg->b);
+    result = arg->a + arg->b;
+    return &result;
+}
+int *sub_1_svc(intpair *arg, struct svc_req *rqstp) {
+    static int result;
+    printf("Received SUB request: %d - %d\n", arg->a, arg->b);
+    result = arg->a - arg->b;
+    return &result;
+}
+int main(int argc, char **argv) {
+    register SVCXPRT *transp;
+    pmap_unset(ARITHMETIC_PROG, ARITHMETIC_VERS);
+    transp = svcudp_create(RPC_ANYSOCK);
+    if (transp == NULL) {
+        fprintf(stderr, "Cannot create UDP service.\n");
+        exit(1);
+    }
+    if(!svc_register(transp, ARITHMETIC_PROG, ARITHMETIC_VERS, arithmetic_prog_1, IPPROTO_UDP)) {
+        fprintf(stderr, "Unable to register service.\n");
+        exit(1);
+    }
+    svc_run();
+    fprintf(stderr, "Error: SVC_RUN returned\n");
+    exit(1);
+}
+
+
+
+Client program:
+#include "arithmetic.h"  
+#include <stdio.h>
+#include <stdlib.h>
+#include <rpc/rpc.h>
+int main(int argc, char **argv) {
+    CLIENT *cl;
+    intpair input;
+    int *result;
+    if (argc != 5) {
+        fprintf(stderr, "Usage: %s <hostname> <ADD|SUB> <int1> <int2>\n", argv[0]);
+        exit(1);
+    }
+    cl = clnt_create(argv[1], ARITHMETIC_PROG, ARITHMETIC_VERS, "udp");
+    if (cl == NULL) {
+        clnt_pcreateerror(argv[1]);
+        exit(1);
+    }
+    input.a = atoi(argv[3]);
+    input.b = atoi(argv[4]);
+    if (strcmp(argv[2], "ADD") == 0) {
+        result = add_1(&input, cl);
+        if (result == NULL) {
+            clnt_perror(cl, "Addition failed");
+            exit(1);
+    }
+        printf("Result of ADD operation: %d + %d = %d\n", input.a, input.b, *result);
+    } else if (strcmp(argv[2], "SUB") == 0) {
+        result = sub_1(&input, cl);
+        if (result == NULL) {
+            clnt_perror(cl, "Subtraction failed");
+            exit(1);
+        }
+        printf("Result of SUB operation: %d - %d = %d\n", input.a, input.b, *result);
+    } else {
+        fprintf(stderr, "Invalid operation specified. Use ADD or SUB.\n");
+        exit(1);
+    }
+    clnt_destroy(cl);
+    return 0;
+}
