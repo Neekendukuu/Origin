@@ -1,0 +1,15 @@
+The prevalence of covert surveillance devices, such as spy cameras, poses a significant threat to privacy. This project aims to develop a software solution for detecting and alerting users of potential spy cameras in their vicinity. The solution will leverage image processing and machine learning techniques to identify hidden cameras, providing an additional layer of security for individuals in sensitive environments.
+SYSTEM REQUIREMENTS
+Camera Detection:
+•	Detect hidden cameras using infrared (IR) & radio frequency (RF) scanning
+User Interface:
+•	Provide a user-friendly interface for initiating scans and displaying results.
+•	Allow users to view detected cameras' locations on a map or floor plan.
+Data Management:
+•	Store scan history and detected camera data.
+•	Provide options for exporting scan reports (PDF, CSV).
+System Settings:
+•	Allow configuration of scan sensitivity and detection methods.
+•	Manage user accounts and authentication for access control
+Connectivity:
+•	Support for Wi-Fi or Bluetooth connectivity to external scanning devices.
