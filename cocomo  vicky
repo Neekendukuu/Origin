@@ -1,0 +1,51 @@
+Experiment – 1.c: Using COCOMO model estimate effort.
+Basic COCOMO Model:
+Assumptions
+Project Size :12000 lines of code (LOC)
+COCOMO Model: Organic
+Error Adjustment Factor (EAF) :1.0(Neutral Adjustment)
+Effort = a x (size) pow(b) x EAF
+a=2.4
+b=1.05
+size = 12000 (Loc) 
+EAF = 1.0
+Effort = 2.4 x (12000) pow (1.05) x 1.0
+Effort = 2.4 x (10) pow (1.05)
+Effort = 2.4 x 13.587
+Effort = 32.610 persons-months
+
+Time (T) = C (E) pow (d)
+	    = 2.5 (32.610) pow (0.38)
+	    = 2.5 x 7.6477
+	   T = 9.397
+
+INTERMEDIATE MODEL: 
+Project Size: 20000 lines of code(loc)
+COCOMO model: Organic 
+Effort Adjustment Factor (EAF): Detailed Factors Considered
+Effort = a x (size) pow (b) x EAF
+a = 2.4
+b = 1.05
+EAF = 1.2
+Size = 20000
+Where EAF is effort is calculated as; 
+	EAF = (Summation I = 1 to N Rating I)
+Where ‘n’ is the total numbers of cost divers and the rating ‘I’ is the rating assigned to each cost divers and size is the estimated project size in KLOC.
+From, Product Attribute (Nominal)
+The Complexity of the product = 1.00
+Hardware Attribute (High)
+The Required Turn-Around Time = 1.07
+Project Attributes (Low)
+Use of Software Tools = 1.10
+EAF = 1.00 x 1.07 x 1.10 
+EAF = 1.177
+EFFORT (E) = 1.177 x 26.5128 
+	      E = 31.2055 Persons-Months
+Time (T) = 2.5 x (31.2055) pow (0.38)
+	     = 2.5 x 3.6966
+	     = 9.2415 
+ 	  T = 9 Months 
+People Required (R) = E/T
+		         R = 31.2055/9.2415
+		         R = 3.3744
+		          R = 3 persons
