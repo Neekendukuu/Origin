@@ -1,0 +1,9 @@
+declare
+n1 number:=10;
+n2 number:=20;
+begin
+IF n1>n2 THEN
+dbms_output.put_line(n1||'is greater than'||n2);
+end if;
+end;
+/
