@@ -1,0 +1,9 @@
+declare
+n1 number:=10;
+n2 number:=20;
+sum number;
+begin
+sum:=n1+n2;
+dbms_output.put_line('the sum of '||n1||' and '||n2||' is '||sum);
+end;
+/
