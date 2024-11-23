@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE note [
+    <!ELEMENT note (to, from, heading, body)>
+    <!ELEMENT to (#PCDATA)>
+    <!ELEMENT from (#PCDATA)>
+    <!ELEMENT heading (#PCDATA)>
+    <!ELEMENT body (#PCDATA)>
+]>
+<note>
+    <to>ram</to>
+    <from>krishna</from>
+    <heading>remainder</heading>
+    <body>don't forget the meeting at sharp 10am</body>
+</note>
