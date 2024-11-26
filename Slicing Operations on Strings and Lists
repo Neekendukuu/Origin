@@ -1,0 +1,15 @@
+# Slicing operations on strings
+string = "Hello, Python!"
+print("Original String:", string)
+print("Slice [0:5]:", string[0:5])
+print("Slice [7:]:", string[7:])
+print("Slice [-6:-1]:", string[-6:-1])   
+print("Reverse String:", string[::-1])   
+
+# Slicing operations on lists
+lst = [10, 20, 30, 40, 50]
+print("\nOriginal List:", lst)
+print("Slice [1:4]:", lst[1:4])
+print("Slice [:3]:", lst[:3])
+print("Slice [-3:]:", lst[-3:])
+print("Reverse List:", lst[::-1])
