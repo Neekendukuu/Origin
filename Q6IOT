@@ -1,0 +1,63 @@
+Program Code:
+
+cpp
+
+#include <Adafruit_Sensor.h>
+
+#include <Adafruit_GFX.h>
+
+#include <Adafruit_SSD1306.h>
+
+#include <DHT.h>
+
+#include <DHT_U.h>
+
+#include <Wire.h>
+
+Adafruit_SSD1306 display(128, 64, &Wire);
+DHT Sensor(3, DHT22);
+void setup() {
+
+ Serial.begin(9600);
+
+ Sensor.begin();
+
+ display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+
+ display.setTextColor(WHITE);
+
+}
+
+void loop() {
+
+ float tempr = Sensor.readTemperature();
+
+ float humid = Sensor.readHumidity();
+
+ display.setCursor(0, 10);
+
+ display.setTextSize(1);
+
+ display.print("Temperature= ");
+
+ display.println(tempr);
+
+ display.print("Humidity= ");
+
+ display.println(humid);
+
+ display.display();
+
+ delay(500);
+
+ display.clearDisplay();
+
+}
+
+Output:
+
+The temperature and humidity readings are displayed on the OLED screen by interfacing the DHT22 sensor 
+
+with the Arduino. The OLED will show the current temperature and humidity values, which are updated 
+
+every 500 milliseconds.
